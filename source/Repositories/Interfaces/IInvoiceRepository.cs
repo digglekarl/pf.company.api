@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace api.Repositories.Interfaces
 {
-    public interface IDividendRepository
+    public interface IInvoiceRepository
     {
-        List<Dividend> Get();
-        Dividend Get(long id);
-        bool Create(Dividend dividend);
-        bool Update(Dividend dividend);
+        List<Invoice> Get();
+        Invoice Get(long id);
+        bool Create(Invoice invoice);
+        bool Update(Invoice invoice);
         bool Delete(long id);
     }
 }

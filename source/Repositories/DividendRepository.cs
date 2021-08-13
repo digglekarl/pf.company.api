@@ -9,15 +9,10 @@ using System.Threading.Tasks;
 
 namespace api.Repositories
 {
-    public class DividendRepository : IDividendRepository
+    public class DividendRepository : BaseRepository, IDividendRepository
     {
-        private const string connectionString = "User ID=postgres;Password=Password1.;Host=localhost;Port=5432;Database=postgres;";
-
-        private IDapperExecutor dapperExecutor;
-
-        public DividendRepository(IDapperExecutor dapperExecutor)
+        public DividendRepository(IDapperExecutor dapperExecutor) : base(dapperExecutor)
         {
-            this.dapperExecutor = dapperExecutor;
         }
 
         public List<Dividend> Get()
@@ -28,7 +23,7 @@ namespace api.Repositories
             }
         }
 
-        public Dividend Get(int id)
+        public Dividend Get(long id)
         {
             using (var connection = new NpgsqlConnection(connectionString))
             {
@@ -52,7 +47,7 @@ namespace api.Repositories
             }
         }
 
-        public bool Delete(int id)
+        public bool Delete(long id)
         {
             using (var connection = new NpgsqlConnection(connectionString))
             {

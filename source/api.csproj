@@ -16,12 +16,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Dividends.resx</DependentUpon>
     </Compile>
+    <Compile Update="Repositories\Queries\Invoices.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Invoices.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="Repositories\Queries\Dividends.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Dividends.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Repositories\Queries\Invoices.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Invoices.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
