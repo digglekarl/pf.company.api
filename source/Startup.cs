@@ -39,6 +39,7 @@ namespace api
 
             services.AddTransient<IDividendService, DividendService>();
             services.AddTransient<IDividendRepository, DividendRepository>();
+            services.AddTransient<IInvoiceRepository, InvoiceRepository>();
             services.AddTransient<IDapperExecutor, DapperExecutor>();
         }
 
