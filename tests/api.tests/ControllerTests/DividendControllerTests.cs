@@ -87,7 +87,7 @@ namespace api.tests.controllers
             var dividend = new Dividend { Id = 1, Reference = "Ref250781", RequestedDate = DateTime.Now, Amount = 1500.00M };
 
             //Act
-            var response = this.dividendsController.Put(1, dividend);
+            var response = this.dividendsController.Put(dividend);
             var result = response as OkObjectResult;
 
             //Assert

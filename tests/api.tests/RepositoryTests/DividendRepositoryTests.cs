@@ -16,14 +16,10 @@ namespace api.tests.RepositoryTests
     {
         private DividendRepository dividendRepository;
         private Mock<IDapperExecutor> dapperExecutorMock;
-        private Mock<IDbConnection> dbConnectionMock;
-
         [SetUp]
         public void SetUp()
         {
             this.dapperExecutorMock = new Mock<IDapperExecutor>();
-            this.dbConnectionMock = new Mock<IDbConnection>();
-
             this.dividendRepository = new DividendRepository(this.dapperExecutorMock.Object);
         }
 

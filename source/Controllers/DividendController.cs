@@ -50,7 +50,7 @@ namespace api.Controllers
 
         // PUT api/<DividendController>/1
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Dividend dividend)
+        public IActionResult Put([FromBody] Dividend dividend)
         {
             var response = this.dividendService.Update(dividend);
             

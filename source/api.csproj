@@ -11,6 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Repositories\Queries\Companies.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Companies.resx</DependentUpon>
+    </Compile>
     <Compile Update="Repositories\Queries\Dividends.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -29,6 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Repositories\Queries\Companies.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Companies.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Repositories\Queries\Dividends.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Dividends.Designer.cs</LastGenOutput>
