@@ -61,7 +61,7 @@ namespace api.Repositories.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO company.expenses(id, amount, description,expense_date) VALUES (@AMOUNT,@DESCRIPTION,@RATE);.
+        ///   Looks up a localized string similar to INSERT INTO company.expenses(amount, description,expense_date) VALUES (@AMOUNT,@DESCRIPTION,@EXPENSEDATE);.
         /// </summary>
         public static string Create {
             get {
