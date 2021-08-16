@@ -38,8 +38,13 @@ namespace api
             });
 
             services.AddTransient<IDividendService, DividendService>();
+            services.AddTransient<IInvoiceService, InvoiceService>();
+            services.AddTransient<IExpenseService, ExpenseService>();
+
             services.AddTransient<IDividendRepository, DividendRepository>();
             services.AddTransient<IInvoiceRepository, InvoiceRepository>();
+            services.AddTransient<IBaseRepository, ExpenseRepository>();
+
             services.AddTransient<IDapperExecutor, DapperExecutor>();
         }
 
