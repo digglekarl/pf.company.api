@@ -10,36 +10,36 @@ namespace api.Services
 {
     public class InvoiceService : IInvoiceService
     {
-        private IInvoiceRepository invoiceRepository;
+        private IBaseRepository baseRepository;
 
-        public InvoiceService(IInvoiceRepository invoiceRepository)
+        public InvoiceService(IBaseRepository baseRepository)
         {
-            this.invoiceRepository = invoiceRepository;
+            this.baseRepository = baseRepository;
         }
 
         public List<Invoice> Get()
         {
-            return this.invoiceRepository.Get();
+            return this.baseRepository.Get<Invoice>(Repositories.Queries.Invoices.GetAll);
         }
 
         public Invoice Get(long id)
         {
-            return this.invoiceRepository.Get(id);
+            return this.baseRepository.Get<Invoice>(id, Repositories.Queries.Invoices.GetSingle, new { ID = id });
         }
 
         public bool Create(Invoice invoice)
         {
-            return this.invoiceRepository.Create(invoice);
+            return this.baseRepository.Create(invoice, Repositories.Queries.Invoices.Create, new { INVOICEDATE = invoice.InvoiceDate, RATE = invoice.Rate, TOTALDAYS = invoice.TotalDays, REFERENCE = invoice.Reference } );
         }
 
         public bool Update(Invoice invoice)
         {
-            return this.invoiceRepository.Update(invoice);
+            return this.baseRepository.Update<Invoice>(invoice, Repositories.Queries.Invoices.Update, new { ID = invoice.Id, INVOICEDATE = invoice.InvoiceDate, RATE = invoice.Rate, TOTALDAYS = invoice.TotalDays, REFERENCE = invoice.Reference } );
         }
 
         public bool Delete(long id)
         {
-            return this.invoiceRepository.Delete(id);
+            return this.baseRepository.Delete(id, Repositories.Queries.Invoices.Delete, new { ID = id });
         }
     }
 }

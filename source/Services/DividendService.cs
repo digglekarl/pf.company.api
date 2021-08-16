@@ -10,44 +10,36 @@ namespace api.Services
 {
     public class DividendService : IDividendService
     {
-        private IDividendRepository dividendRepository;
+        private IBaseRepository baseRepository;
 
-        public DividendService(IDividendRepository dividendRepository)
+        public DividendService(IBaseRepository baseRepository)
         {
-            this.dividendRepository = dividendRepository;
+            this.baseRepository = baseRepository;
         }
 
         public List<Dividend> Get()
         {
-            var dividends = this.dividendRepository.Get();
-
-            return dividends;
+            return this.baseRepository.Get<Dividend>(Repositories.Queries.Dividends.GetAll);
         }
 
-        public Dividend Get(int id)
+        public Dividend Get(long id)
         {
-            var dividend = this.dividendRepository.Get(id);
-
-            return dividend;
+            return this.baseRepository.Get<Dividend>(id, Repositories.Queries.Dividends.GetSingle, new { ID = id });
         }
 
         public bool Create(Dividend dividend)
         {
-            var result = this.dividendRepository.Create(dividend);
-            return result;
+            return this.baseRepository.Create(dividend, Repositories.Queries.Dividends.Create, new { AMOUNT = dividend.Amount, REFERENCE = dividend.Reference, REQUESTEDDATE = dividend.RequestedDate });
         }
 
         public bool Update(Dividend dividend)
         {
-            var result = this.dividendRepository.Update(dividend);
-            return result;
+            return this.baseRepository.Update(dividend, Repositories.Queries.Dividends.Update, new { ID = dividend.Id, AMOUNT = dividend.Amount, REFERENCE = dividend.Reference, REQUESTEDDATE = dividend.RequestedDate });
         }
 
-        public bool Delete(int id)
+        public bool Delete(long id)
         {
-            var result = this.dividendRepository.Delete(1);
-            return result;
+            return this.baseRepository.Delete(id, Repositories.Queries.Dividends.Delete, new { ID = id });
         }
-
     }
 }

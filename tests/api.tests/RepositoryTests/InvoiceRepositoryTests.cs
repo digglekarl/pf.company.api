@@ -31,7 +31,7 @@ namespace api.tests.RepositoryTests
             var expected = new List<Invoice>();
 
             //Act
-            var result = this.invoiceRepository.Get();
+            var result = this.invoiceRepository.Get<Invoice>(It.IsAny<string>());
 
             //Assert
             Assert.AreEqual(expected, result);
@@ -45,7 +45,7 @@ namespace api.tests.RepositoryTests
             this.dapperExecutor.Setup(x => x.Query<Invoice>(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(expected);
 
             //Act
-            var result = this.invoiceRepository.Get();
+            var result = this.invoiceRepository.Get<Invoice>(It.IsAny<string>());
 
             //Assert
             Assert.AreEqual(expected, result);
@@ -59,7 +59,7 @@ namespace api.tests.RepositoryTests
             this.dapperExecutor.Setup(x => x.QuerySingle<Invoice>(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(expected);
             
             //Act
-            var result = this.invoiceRepository.Get(1);
+            var result = this.invoiceRepository.Get<Invoice>(1, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.AreEqual(expected, result);
@@ -73,7 +73,7 @@ namespace api.tests.RepositoryTests
             this.dapperExecutor.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(1);
             
             //Act
-            var result = this.invoiceRepository.Create(invoice);
+            var result = this.invoiceRepository.Create<Invoice>(invoice, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.IsTrue(result);
@@ -87,7 +87,7 @@ namespace api.tests.RepositoryTests
             this.dapperExecutor.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(-1);
 
             //Act
-            var result = this.invoiceRepository.Create(invoice);
+            var result = this.invoiceRepository.Create<Invoice>(invoice, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.IsFalse(result);
@@ -101,7 +101,7 @@ namespace api.tests.RepositoryTests
             this.dapperExecutor.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(1);
 
             //Act
-            var result = this.invoiceRepository.Update(invoice);
+            var result = this.invoiceRepository.Update<Invoice>(invoice, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.IsTrue(result);
@@ -115,7 +115,7 @@ namespace api.tests.RepositoryTests
             this.dapperExecutor.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(-1);
 
             //Act
-            var result = this.invoiceRepository.Update(invoice);
+            var result = this.invoiceRepository.Update<Invoice>(invoice, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.IsFalse(result);
@@ -128,7 +128,7 @@ namespace api.tests.RepositoryTests
             this.dapperExecutor.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(1);
 
             //Act
-            var result = this.invoiceRepository.Delete(1);
+            var result = this.invoiceRepository.Delete(1, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.IsTrue(result);
@@ -141,7 +141,7 @@ namespace api.tests.RepositoryTests
             this.dapperExecutor.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(-1);
 
             //Act
-            var result = this.invoiceRepository.Delete(1);
+            var result = this.invoiceRepository.Delete(1, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.IsFalse(result);

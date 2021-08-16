@@ -14,14 +14,14 @@ namespace api.tests.Services
     public class DividendServiceTests
     {
         private DividendService dividendService;
-        private Mock<IDividendRepository> dividendRepository;
+        private Mock<IBaseRepository> baseRepositoryMock;
 
         [SetUp]
         public void SetUp()
         {
-            this.dividendRepository = new Mock<IDividendRepository>();
+            this.baseRepositoryMock = new Mock<IBaseRepository>();
 
-            this.dividendService = new DividendService(this.dividendRepository.Object);
+            this.dividendService = new DividendService(this.baseRepositoryMock.Object);
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace api.tests.Services
         {
             //Arrange
             var expected = new List<Dividend>();
-            this.dividendRepository.Setup(x => x.Get()).Returns(expected);
+            this.baseRepositoryMock.Setup(x => x.Get<Dividend>(It.IsAny<string>())).Returns(expected);
 
             //Act
             var result = this.dividendService.Get();
@@ -43,7 +43,7 @@ namespace api.tests.Services
         {
             //Arrange
             var expected = new List<Dividend>() { new Dividend { Id = 1, Reference = "Ref2507", RequestedDate = DateTime.Now, Amount = 1000.00M } };
-            this.dividendRepository.Setup(x => x.Get()).Returns(expected);
+            this.baseRepositoryMock.Setup(x => x.Get<Dividend>(It.IsAny<string>())).Returns(expected);
            
             //Act
             var result = this.dividendService.Get();
@@ -57,7 +57,7 @@ namespace api.tests.Services
         {
             //Arrange
             var expected = new Dividend { Id = 1, Reference = "Ref2507", RequestedDate = DateTime.Now, Amount = 1500.00M };
-            this.dividendRepository.Setup(x => x.Get(1)).Returns(expected);
+            this.baseRepositoryMock.Setup(x => x.Get<Dividend>(1, It.IsAny<string>(), It.IsAny<object>())).Returns(expected);
 
             //Act
             var result = this.dividendService.Get(1);
@@ -71,7 +71,7 @@ namespace api.tests.Services
         {
             //Arrange
             var dividend = new Dividend { Reference = "Ref2507", RequestedDate = DateTime.Now, Amount = 1500.00M };
-            this.dividendRepository.Setup(x => x.Create(dividend)).Returns(true);
+            this.baseRepositoryMock.Setup(x => x.Create(dividend, It.IsAny<string>(), It.IsAny<object>())).Returns(true);
 
             //Act
             var result = this.dividendService.Create(dividend);
@@ -85,7 +85,7 @@ namespace api.tests.Services
         {
             //Arrange
             var dividend = new Dividend { Reference = "Ref2507", RequestedDate = DateTime.Now, Amount = 1500.00M };
-            this.dividendRepository.Setup(x => x.Create(dividend)).Returns(false);
+            this.baseRepositoryMock.Setup(x => x.Create(dividend, It.IsAny<string>(), It.IsAny<object>())).Returns(false);
 
             //Act
             var result = this.dividendService.Create(dividend);
@@ -99,7 +99,7 @@ namespace api.tests.Services
         {
             //Arrange
             var dividend = new Dividend { Id = 1, Reference = "Ref2507", RequestedDate = DateTime.Now, Amount = 1500.00M };
-            this.dividendRepository.Setup(x => x.Update(dividend)).Returns(true);
+            this.baseRepositoryMock.Setup(x => x.Update(dividend, It.IsAny<string>(), It.IsAny<object>())).Returns(true);
 
             //Act
             var result = this.dividendService.Update(dividend);
@@ -113,7 +113,7 @@ namespace api.tests.Services
         {
             //Arrange
             var dividend = new Dividend { Id = 1, Reference = "Ref2507", RequestedDate = DateTime.Now, Amount = 1500.00M };
-            this.dividendRepository.Setup(x => x.Update(dividend)).Returns(false);
+            this.baseRepositoryMock.Setup(x => x.Update(dividend, It.IsAny<string>(), It.IsAny<object>())).Returns(false);
 
             //Act
             var result = this.dividendService.Update(dividend);
@@ -126,7 +126,7 @@ namespace api.tests.Services
         public void Delete_IsDeleted_ReturnsTrue()
         {
             //Arrange
-            this.dividendRepository.Setup(x => x.Delete(1)).Returns(true);
+            this.baseRepositoryMock.Setup(x => x.Delete(1, It.IsAny<string>(), It.IsAny<object>())).Returns(true);
 
             //Act
             var result = this.dividendService.Delete(1);
@@ -139,7 +139,7 @@ namespace api.tests.Services
         public void Delete_IsNotDeleted_ReturnsFalse()
         {
             //Arrange
-            this.dividendRepository.Setup(x => x.Delete(1)).Returns(false);
+            this.baseRepositoryMock.Setup(x => x.Delete(1, It.IsAny<string>(), It.IsAny<object>())).Returns(false);
 
             //Act
             var result = this.dividendService.Delete(1);

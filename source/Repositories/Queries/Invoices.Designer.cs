@@ -79,20 +79,20 @@ namespace api.Repositories.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM company.invoices WHERE id = @ID.
-        /// </summary>
-        public static string Get {
-            get {
-                return ResourceManager.GetString("Get", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to SELECT * FROM company.invoices.
         /// </summary>
         public static string GetAll {
             get {
                 return ResourceManager.GetString("GetAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT * FROM company.invoices WHERE id = @ID.
+        /// </summary>
+        public static string GetSingle {
+            get {
+                return ResourceManager.GetString("GetSingle", resourceCulture);
             }
         }
         

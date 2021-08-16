@@ -41,8 +41,8 @@ namespace api
             services.AddTransient<IInvoiceService, InvoiceService>();
             services.AddTransient<IExpenseService, ExpenseService>();
 
-            services.AddTransient<IDividendRepository, DividendRepository>();
-            services.AddTransient<IInvoiceRepository, InvoiceRepository>();
+            services.AddTransient<IBaseRepository, DividendRepository>();
+            services.AddTransient<IBaseRepository, InvoiceRepository>();
             services.AddTransient<IBaseRepository, ExpenseRepository>();
 
             services.AddTransient<IDapperExecutor, DapperExecutor>();

@@ -15,13 +15,13 @@ namespace api.tests.ServiceTests
     public class InvoiceServiceTests
     {
         private InvoiceService invoiceService;
-        private Mock<IInvoiceRepository> invoiceRepositoryMock;
+        private Mock<IBaseRepository> baseRepositoryMock;
 
         [SetUp]
         public void SetUp()
         {
-            this.invoiceRepositoryMock = new Mock<IInvoiceRepository>();
-            this.invoiceService = new InvoiceService(this.invoiceRepositoryMock.Object);
+            this.baseRepositoryMock = new Mock<IBaseRepository>();
+            this.invoiceService = new InvoiceService(this.baseRepositoryMock.Object);
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace api.tests.ServiceTests
         {
             //Arrange
             var expected = new List<Invoice>();
-            this.invoiceRepositoryMock.Setup(x => x.Get()).Returns(expected);
+            this.baseRepositoryMock.Setup(x => x.Get<Invoice>(It.IsAny<string>())).Returns(expected);
             //Act
             var result = this.invoiceService.Get();
 
@@ -42,7 +42,7 @@ namespace api.tests.ServiceTests
         {
             //Arrange
             var expected = new List<Invoice>() { new Invoice { Id = 1, Rate = 100.0M, TotalDays = 10, InvoiceDate = DateTime.Today, Reference = "Ref2507" } };
-            this.invoiceRepositoryMock.Setup(x => x.Get()).Returns(expected);
+            this.baseRepositoryMock.Setup(x => x.Get<Invoice>(It.IsAny<string>())).Returns(expected);
             //Act
             var result = this.invoiceService.Get();
 
@@ -55,7 +55,7 @@ namespace api.tests.ServiceTests
         {
             //Arrange
             var expected = new Invoice { Id = 1, Rate = 100.0M, TotalDays = 10, InvoiceDate = DateTime.Today, Reference = "Ref2507" };
-            this.invoiceRepositoryMock.Setup(x => x.Get(1)).Returns(expected);
+            this.baseRepositoryMock.Setup(x => x.Get<Invoice>(1, It.IsAny<string>(), It.IsAny<object>())).Returns(expected);
             //Act
             var result = this.invoiceService.Get(1);
 
@@ -68,7 +68,7 @@ namespace api.tests.ServiceTests
         {
             //Arrange
             var invoice = new Invoice { Rate = 100.0M, TotalDays = 10, InvoiceDate = DateTime.Today, Reference = "Ref2507" };
-            this.invoiceRepositoryMock.Setup(x => x.Create(invoice)).Returns(true);
+            this.baseRepositoryMock.Setup(x => x.Create<Invoice>(invoice, It.IsAny<string>(), It.IsAny<object>())).Returns(true);
 
             //Act
             var result = this.invoiceService.Create(invoice);
@@ -82,7 +82,7 @@ namespace api.tests.ServiceTests
         {
             //Arrange
             var invoice = new Invoice { Rate = 100.0M, TotalDays = 10, InvoiceDate = DateTime.Today, Reference = "Ref2507" };
-            this.invoiceRepositoryMock.Setup(x => x.Create(invoice)).Returns(false);
+            this.baseRepositoryMock.Setup(x => x.Create<Invoice>(invoice, It.IsAny<string>(), It.IsAny<object>())).Returns(false);
 
             //Act
             var result = this.invoiceService.Create(invoice);
@@ -96,7 +96,7 @@ namespace api.tests.ServiceTests
         {
             //Arrange
             var invoice = new Invoice { Id = 1, Rate = 100.0M, TotalDays = 10, InvoiceDate = DateTime.Today, Reference = "Ref2507" };
-            this.invoiceRepositoryMock.Setup(x => x.Update(invoice)).Returns(true);
+            this.baseRepositoryMock.Setup(x => x.Update<Invoice>(invoice, It.IsAny<string>(), It.IsAny<object>())).Returns(true);
             //Act
             var result = this.invoiceService.Update(invoice);
 
@@ -109,7 +109,7 @@ namespace api.tests.ServiceTests
         {
             //Arrange
             var invoice = new Invoice { Id = 1, Rate = 100.0M, TotalDays = 10, InvoiceDate = DateTime.Today, Reference = "Ref2507" };
-            this.invoiceRepositoryMock.Setup(x => x.Update(invoice)).Returns(false);
+            this.baseRepositoryMock.Setup(x => x.Update<Invoice>(invoice, It.IsAny<string>(), It.IsAny<object>())).Returns(false);
             //Act
             var result = this.invoiceService.Update(invoice);
 
@@ -121,7 +121,7 @@ namespace api.tests.ServiceTests
         public void Delete_IsDeleted_ReturnsTrue()
         {
             //Arrange
-            this.invoiceRepositoryMock.Setup(x => x.Delete(1)).Returns(true);
+            this.baseRepositoryMock.Setup(x => x.Delete(1, It.IsAny<string>(), It.IsAny<object>())).Returns(true);
 
             //Act
             var result = this.invoiceService.Delete(1);
@@ -134,7 +134,7 @@ namespace api.tests.ServiceTests
         public void Delete_IsNotDeleted_ReturnsFalse()
         {
             //Arrange
-            this.invoiceRepositoryMock.Setup(x => x.Delete(1)).Returns(false);
+            this.baseRepositoryMock.Setup(x => x.Delete(1, It.IsAny<string>(), It.IsAny<object>())).Returns(false);
 
             //Act
             var result = this.invoiceService.Delete(1);

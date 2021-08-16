@@ -34,7 +34,7 @@ namespace api.tests.RepositoryTests
             var expected = new List<Dividend>();
 
             //Act
-            var result = this.dividendRepository.Get();
+            var result = this.dividendRepository.Get<Dividend>(It.IsAny<string>());
 
             //Assert
             Assert.AreEqual(expected, result);
@@ -48,7 +48,7 @@ namespace api.tests.RepositoryTests
             this.dapperExecutorMock.Setup(x => x.Query<Dividend>(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(expected);
 
             //Act
-            var result = this.dividendRepository.Get();
+            var result = this.dividendRepository.Get<Dividend>(It.IsAny<string>());
 
             //Assert
             Assert.AreEqual(expected, result);
@@ -63,7 +63,7 @@ namespace api.tests.RepositoryTests
             this.dapperExecutorMock.Setup(x => x.QuerySingle<Dividend>(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(expected);
 
             //Act
-            var result = this.dividendRepository.Get(1);
+            var result = this.dividendRepository.Get<Dividend>(1, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.AreEqual(expected, result);
@@ -77,7 +77,7 @@ namespace api.tests.RepositoryTests
 
             this.dapperExecutorMock.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(1);
             //Act
-            var result = this.dividendRepository.Create(dividend);
+            var result = this.dividendRepository.Create<Dividend>(dividend, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.IsTrue(result);
@@ -89,9 +89,9 @@ namespace api.tests.RepositoryTests
             //Arrange
             var dividend = new Dividend { Reference = "Ref2507", RequestedDate = DateTime.Now, Amount = 1000.00M };
             this.dapperExecutorMock.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(-1);
-            
+
             //Act
-            var result = this.dividendRepository.Create(dividend);
+            var result = this.dividendRepository.Create<Dividend>(dividend, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.IsFalse(result);
@@ -104,7 +104,7 @@ namespace api.tests.RepositoryTests
             var dividend = new Dividend { Id = 1, Reference = "Ref2507", RequestedDate = DateTime.Now, Amount = 1000.00M };
             this.dapperExecutorMock.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(1);
             //Act
-            var result = this.dividendRepository.Update(dividend);
+            var result = this.dividendRepository.Update<Dividend>(dividend, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.IsTrue(result);
@@ -118,7 +118,7 @@ namespace api.tests.RepositoryTests
             this.dapperExecutorMock.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(-1);
 
             //Act
-            var result = this.dividendRepository.Update(dividend);
+            var result = this.dividendRepository.Update<Dividend>(dividend, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.IsFalse(result);
@@ -131,7 +131,7 @@ namespace api.tests.RepositoryTests
             this.dapperExecutorMock.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(1);
 
             //Act
-            var result = this.dividendRepository.Delete(1);
+            var result = this.dividendRepository.Delete(1, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.IsTrue(result);
@@ -144,7 +144,7 @@ namespace api.tests.RepositoryTests
             this.dapperExecutorMock.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(-1);
 
             //Act
-            var result = this.dividendRepository.Delete(1);
+            var result = this.dividendRepository.Delete(1, It.IsAny<string>(), It.IsAny<object>());
 
             //Assert
             Assert.IsFalse(result);

@@ -123,11 +123,11 @@
   <data name="Delete" xml:space="preserve">
     <value>DELETE FROM companys.invoices WHERE id = @ID</value>
   </data>
-  <data name="Get" xml:space="preserve">
-    <value>SELECT * FROM company.invoices WHERE id = @ID</value>
-  </data>
   <data name="GetAll" xml:space="preserve">
     <value>SELECT * FROM company.invoices</value>
+  </data>
+  <data name="GetSingle" xml:space="preserve">
+    <value>SELECT * FROM company.invoices WHERE id = @ID</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>UPDATE company.invoices SET invoice_date = @INVOICEDATE, rate = @RATE, total_days = @TOTALDAYS, reference = @REFERENCE</value>
