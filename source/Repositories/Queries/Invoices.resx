@@ -130,6 +130,6 @@
     <value>SELECT * FROM company.invoices WHERE id = @ID</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>UPDATE company.invoices SET invoice_date = @INVOICEDATE, rate = @RATE, total_days = @TOTALDAYS, reference = @REFERENCE</value>
+    <value>UPDATE company.invoices SET invoice_date = @INVOICEDATE, rate = @RATE, total_days = @TOTALDAYS, reference = @REFERENCE WHERE id = @ID</value>
   </data>
 </root>

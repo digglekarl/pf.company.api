@@ -97,7 +97,7 @@ namespace api.Repositories.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE company.invoices SET invoice_date = @INVOICEDATE, rate = @RATE, total_days = @TOTALDAYS, reference = @REFERENCE.
+        ///   Looks up a localized string similar to UPDATE company.invoices SET invoice_date = @INVOICEDATE, rate = @RATE, total_days = @TOTALDAYS, reference = @REFERENCE WHERE id = @ID.
         /// </summary>
         public static string Update {
             get {
