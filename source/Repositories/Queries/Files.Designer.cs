@@ -61,7 +61,7 @@ namespace api.Repositories.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO company.files(content, name, size, upload_date) VALUES (@CONTENT, @NAME, @SIZE, @UPLOADDATE);.
+        ///   Looks up a localized string similar to INSERT INTO company.files(content, name, size, upload_date, company_id) VALUES (@CONTENT, @NAME, @SIZE, @UPLOADDATE, @COMPANYID);.
         /// </summary>
         public static string Create {
             get {

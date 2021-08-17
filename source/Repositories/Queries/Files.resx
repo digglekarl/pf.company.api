@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Create" xml:space="preserve">
-    <value>INSERT INTO company.files(content, name, size, upload_date) VALUES (@CONTENT, @NAME, @SIZE, @UPLOADDATE);</value>
+    <value>INSERT INTO company.files(content, name, size, upload_date, company_id) VALUES (@CONTENT, @NAME, @SIZE, @UPLOADDATE, @COMPANYID);</value>
   </data>
 </root>

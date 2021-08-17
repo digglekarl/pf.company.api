@@ -34,10 +34,11 @@ namespace api.Services
                     Content = content,
                     Name = file.File.FileName,
                     Size = file.File.Length / 1024,
-                    UploadDate = DateTime.Now
+                    UploadDate = DateTime.Now,
+                    CompanyId = file.CompanyId
                 };
 
-                return this.fileRepository.Create<File>(documentFile, Repositories.Queries.Files.Create, new { CONTENT = documentFile.Content, NAME = documentFile.Name, SIZE = documentFile.Size, UPLOADDATE = documentFile.UploadDate  });
+                return this.fileRepository.Create(documentFile, Repositories.Queries.Files.Create, new { CONTENT = documentFile.Content, NAME = documentFile.Name, SIZE = documentFile.Size, UPLOADDATE = documentFile.UploadDate, COMPANYID = file.CompanyId });
             }
 
             return false;

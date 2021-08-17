@@ -12,5 +12,6 @@ namespace api.Models
         public byte[] Content { get; set; }
         public long Size { get; set; }
         public DateTime UploadDate { get; set; }
+        public long CompanyId { get; set; }
     }
 }

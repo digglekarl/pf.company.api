@@ -24,7 +24,7 @@ namespace api.tests.RepositoryTests
         public void Create_IsCreated_ReturnsTrue()
         {
             //Arrange
-            var file = new Models.File { Content = new byte[1], Name = "test.pdf", Size = 1, UploadDate = DateTime.Now };
+            var file = new Models.File { Content = new byte[1], Name = "test.pdf", Size = 1, UploadDate = DateTime.Now, CompanyId = 1 };
             this.dapperExecutorMock.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(1);
 
             //Act
@@ -38,7 +38,7 @@ namespace api.tests.RepositoryTests
         public void Create_IsNotCreated_ReturnsFalse()
         {
             //Arrange
-            var file = new Models.File { Content = new byte[1], Name = "test.pdf", Size = 1, UploadDate = DateTime.Now };
+            var file = new Models.File { Content = new byte[1], Name = "test.pdf", Size = 1, UploadDate = DateTime.Now, CompanyId = 1 };
             this.dapperExecutorMock.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(-1);
 
             //Act

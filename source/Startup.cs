@@ -42,12 +42,14 @@ namespace api
             services.AddTransient<IExpenseService, ExpenseService>();
             services.AddTransient<ICompanyService, CompanyService>();
             services.AddTransient<IDocumentService, DocumentService>();
+            services.AddTransient<IFileService, FileService>();
 
             services.AddTransient<IBaseRepository, DividendRepository>();
             services.AddTransient<IBaseRepository, InvoiceRepository>();
             services.AddTransient<IBaseRepository, ExpenseRepository>();
             services.AddTransient<IBaseRepository, CompanyRepository>();
             services.AddTransient<IBaseRepository, DocumentRepository>();
+            services.AddTransient<IBaseRepository, FileRepository>();
 
             services.AddTransient<IDapperExecutor, DapperExecutor>();
         }
