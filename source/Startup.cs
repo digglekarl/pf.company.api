@@ -41,11 +41,13 @@ namespace api
             services.AddTransient<IInvoiceService, InvoiceService>();
             services.AddTransient<IExpenseService, ExpenseService>();
             services.AddTransient<ICompanyService, CompanyService>();
+            services.AddTransient<IDocumentService, DocumentService>();
 
             services.AddTransient<IBaseRepository, DividendRepository>();
             services.AddTransient<IBaseRepository, InvoiceRepository>();
             services.AddTransient<IBaseRepository, ExpenseRepository>();
             services.AddTransient<IBaseRepository, CompanyRepository>();
+            services.AddTransient<IBaseRepository, DocumentRepository>();
 
             services.AddTransient<IDapperExecutor, DapperExecutor>();
         }

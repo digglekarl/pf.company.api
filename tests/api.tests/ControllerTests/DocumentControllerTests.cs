@@ -42,7 +42,7 @@ namespace api.tests.ControllerTests
         public void Document_Get_ReturnsList()
         {
             //Arrange
-            var expected = new List<Document> { new Document { Id = 1, Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 } };
+            var expected = new List<Document> { new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 } };
             this.documentServiceMock.Setup(x => x.Get()).Returns(expected);
 
             //Act
@@ -59,7 +59,7 @@ namespace api.tests.ControllerTests
         public void Document_Get_ReturnsSingle()
         {
             //Arrange
-            var expected = new Document { Id = 1, Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 };
+            var expected = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
             this.documentServiceMock.Setup(x => x.Get(It.IsAny<long>())).Returns(expected);
 
             //Act
@@ -74,7 +74,7 @@ namespace api.tests.ControllerTests
         public void Document_Post_ReturnsOk()
         {
             //Arrange
-            var document = new Document { Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 };
+            var document = new Document { DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
             this.documentServiceMock.Setup(x => x.Create(It.IsAny<Document>())).Returns(true);
 
             //Act
@@ -89,7 +89,7 @@ namespace api.tests.ControllerTests
         public void Document_Put_ReturnsOk()
         {
             //Arrange
-            var document = new Document { Id = 1, Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 };
+            var document = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
             this.documentServiceMock.Setup(x => x.Update(It.IsAny<Document>())).Returns(true);
 
             //Act

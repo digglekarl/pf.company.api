@@ -61,7 +61,7 @@ namespace api.Repositories.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO company.documents(name, size, content, renewal_date, company_id) VALUES (@NAME, @SIZE, @CONTENT, @RENEWALDATE, @COMPANYID).
+        ///   Looks up a localized string similar to INSERT INTO company.documents(document_name, renewal_date, company_id, file_id, document_type_id) VALUES (@NAME, @RENEWALDATE, @COMPANYID, @FILEID, @DOCUMENTTYPEID).
         /// </summary>
         public static string Create {
             get {
@@ -97,7 +97,7 @@ namespace api.Repositories.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE company.documents SET name=@NAME, size=@SIZE, content=@CONTENT, renewal_date=@RENEWALDATE WHERE id = @ID.
+        ///   Looks up a localized string similar to UPDATE company.documents SET document_name=@NAME, renewal_date=@RENEWALDATE, file_id = @FILEID, document_type_id = @DOCUMENTTYPEID WHERE id = @ID.
         /// </summary>
         public static string Update {
             get {

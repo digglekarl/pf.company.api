@@ -28,12 +28,12 @@ namespace api.Services
 
         public bool Create(Document document)
         {
-            return this.baseRepository.Create(document, Repositories.Queries.Documents.Create, new { NAME = document.Name, SIZE = document.Size, CONTENT = document.Content, RENEWALDATE = document.RenewalDate, COMPANYID = document.CompanyId });
+            return this.baseRepository.Create(document, Repositories.Queries.Documents.Create, new { NAME = document.DocumentName, RENEWALDATE = document.RenewalDate, COMPANYID = document.CompanyId, FILEID = document.FileId, DOCUMENTTYPEID = document.DocumentTypeId });
         }
 
         public bool Update(Document document)
         {
-            return this.baseRepository.Update(document, Repositories.Queries.Documents.Update, new { ID = document.Id, NAME = document.Name, SIZE = document.Size, CONTENT = document.Content, RENEWALDATE = document.RenewalDate, COMPANYID = document.CompanyId });
+            return this.baseRepository.Update(document, Repositories.Queries.Documents.Update, new { ID = document.Id, NAME = document.DocumentName, RENEWALDATE = document.RenewalDate, COMPANYID = document.CompanyId });
         }
 
         public bool Delete(long id)

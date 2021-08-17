@@ -40,7 +40,7 @@ namespace api.tests.RepositoryTests
         [Test]
         public void Get_DocumentsExist_ReturnsList()
         {
-            var expected = new List<Document> { new Document { Id = 1, Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 } };
+            var expected = new List<Document> { new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 } };
             this.dapperExecutorMock.Setup(x => x.Query<Document>(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(expected);
 
             //Act
@@ -53,7 +53,7 @@ namespace api.tests.RepositoryTests
         [Test]
         public void Get_DocumentById_ReturnsDocument()
         {
-            var expected = new Document { Id = 1, Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 } ;
+            var expected = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 } ;
             this.dapperExecutorMock.Setup(x => x.QuerySingle<Document>(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(expected);
 
             //Act
@@ -66,7 +66,7 @@ namespace api.tests.RepositoryTests
         [Test]
         public void Create_IsCreated_ReturnsTrue()
         {
-            var document = new Document { Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 };
+            var document = new Document { DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
             this.dapperExecutorMock.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(1);
 
             //Act
@@ -79,7 +79,7 @@ namespace api.tests.RepositoryTests
         [Test]
         public void Create_IsNotCreated_ReturnsFalse()
         {
-            var document = new Document { Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 };
+            var document = new Document { DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
             this.dapperExecutorMock.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(-1);
 
             //Act
@@ -92,7 +92,7 @@ namespace api.tests.RepositoryTests
         [Test]
         public void Update_IsUpdated_ReturnsTrue()
         {
-            var document = new Document { Id = 1, Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 };
+            var document = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
             this.dapperExecutorMock.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(1);
 
             //Act
@@ -105,7 +105,7 @@ namespace api.tests.RepositoryTests
         [Test]
         public void Update_IsNotUpdated_ReturnsTrue()
         {
-            var document = new Document { Id = 1, Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 };
+            var document = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
             this.dapperExecutorMock.Setup(x => x.Execute(It.IsAny<IDbConnection>(), It.IsAny<string>(), It.IsAny<object>())).Returns(-1);
 
             //Act

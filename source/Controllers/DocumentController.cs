@@ -38,7 +38,7 @@ namespace api.Controllers
 
         // POST api/<DocumentController>
         [HttpPost]
-        public IActionResult Post([FromBody] Document document)
+        public IActionResult Post([FromForm] Document document)
         {
             var response = this.documentService.Create(document);
             return Ok(response);
@@ -59,5 +59,21 @@ namespace api.Controllers
             var response = this.documentService.Delete(id);
             return Ok(response);
         }
+
+        /*
+        public byte[] GetContent()
+        {
+            var content = new byte[0];
+            if (this.DocumentFile.Length > 0)
+            {
+                using (var stream = this.DocumentFile.OpenReadStream())
+                {
+                    content = new byte[this.DocumentFile.Length];
+                    stream.Read(content, 0, (int)this.DocumentFile.Length);
+                }
+            }
+            return content;
+        }
+        */
     }
 }

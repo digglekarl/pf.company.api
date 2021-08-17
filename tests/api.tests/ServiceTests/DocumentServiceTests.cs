@@ -42,7 +42,7 @@ namespace api.tests.ServiceTests
         public void Get_DocumentsExist_ReturnsList()
         {
             //Arrange
-            var expected = new List<Document> { new Document { Id = 1, Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 } };
+            var expected = new List<Document> { new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 } };
             this.baseRepositoryMock.Setup(x => x.Get<Document>(It.IsAny<string>())).Returns(expected);
 
             //Act
@@ -56,7 +56,7 @@ namespace api.tests.ServiceTests
         public void Get_DocumentsById_ReturnsDocument()
         {
             //Arrange
-            var expected = new Document { Id = 1, Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 };
+            var expected = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
             this.baseRepositoryMock.Setup(x => x.Get<Document>(It.IsAny<long>(), It.IsAny<string>(), It.IsAny<object>())).Returns(expected);
 
             //Act
@@ -70,7 +70,7 @@ namespace api.tests.ServiceTests
         public void Create_IsCreated_ReturnsTrue()
         {
             //Arrange
-            var document = new Document { Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 };
+            var document = new Document { DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
             this.baseRepositoryMock.Setup(x => x.Create(It.IsAny<Document>(), It.IsAny<string>(), It.IsAny<object>())).Returns(true);
 
             //Act
@@ -84,7 +84,7 @@ namespace api.tests.ServiceTests
         public void Create_IsNotCreated_ReturnsFalse()
         {
             //Arrange
-            var document = new Document { Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 };
+            var document = new Document { DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
             this.baseRepositoryMock.Setup(x => x.Create(It.IsAny<Document>(), It.IsAny<string>(), It.IsAny<object>())).Returns(false);
 
             //Act
@@ -98,7 +98,7 @@ namespace api.tests.ServiceTests
         public void Update_IsUpdated_ReturnsTrue()
         {
             //Arrange
-            var document = new Document { Id = 1, Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 };
+            var document = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
             this.baseRepositoryMock.Setup(x => x.Update(It.IsAny<Document>(), It.IsAny<string>(), It.IsAny<object>())).Returns(true);
 
             //Act
@@ -112,7 +112,7 @@ namespace api.tests.ServiceTests
         public void Update_IsNotUpdated_ReturnsFalse()
         {
             //Arrange
-            var document = new Document { Id = 1, Name = "Test Document", Size = 52, Content = new byte[1], RenewalDate = DateTime.Now, CompanyId = 1 };
+            var document = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
             this.baseRepositoryMock.Setup(x => x.Update(It.IsAny<Document>(), It.IsAny<string>(), It.IsAny<object>())).Returns(false);
 
             //Act

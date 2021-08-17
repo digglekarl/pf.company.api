@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Create" xml:space="preserve">
-    <value>INSERT INTO company.documents(name, size, content, renewal_date, company_id) VALUES (@NAME, @SIZE, @CONTENT, @RENEWALDATE, @COMPANYID)</value>
+    <value>INSERT INTO company.documents(document_name, renewal_date, company_id, file_id, document_type_id) VALUES (@NAME, @RENEWALDATE, @COMPANYID, @FILEID, @DOCUMENTTYPEID)</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>DELETE FROM company.documents WHERE id = @ID</value>
@@ -130,6 +130,6 @@
     <value>SELECT * FROM company.documents WHERE id = @ID</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>UPDATE company.documents SET name=@NAME, size=@SIZE, content=@CONTENT, renewal_date=@RENEWALDATE WHERE id = @ID</value>
+    <value>UPDATE company.documents SET document_name=@NAME, renewal_date=@RENEWALDATE, file_id = @FILEID, document_type_id = @DOCUMENTTYPEID WHERE id = @ID</value>
   </data>
 </root>
