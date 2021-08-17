@@ -42,28 +42,36 @@ namespace api.tests.ServiceTests
         public void Get_DocumentsExist_ReturnsList()
         {
             //Arrange
-            var expected = new List<Document> { new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 } };
-            this.baseRepositoryMock.Setup(x => x.Get<Document>(It.IsAny<string>())).Returns(expected);
+            var expectedDocumentFile = new List<DocumentFile> { new DocumentFile { Document = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 }, File = new File { Content = new byte[1], Name = "test.pdf", Size = 1, UploadDate = DateTime.Now, CompanyId = 1 } } };
+
+            var expectedDocument = new List<Document> { new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 } };
+            var expectedFile = new File { Content = new byte[1], Name = "test.pdf", Size = 1, UploadDate = DateTime.Now, CompanyId = 1 };
+            this.baseRepositoryMock.Setup(x => x.Get<Document>(It.IsAny<string>())).Returns(expectedDocument);
+            this.baseRepositoryMock.Setup(x => x.Get<File>(It.IsAny<long>(), It.IsAny<string>(), It.IsAny<object>())).Returns(expectedFile);
 
             //Act
             var result = this.documentService.Get();
 
             //Assert
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expectedDocumentFile.Count, result.Count);
         }
 
         [Test]
         public void Get_DocumentsById_ReturnsDocument()
         {
             //Arrange
-            var expected = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
-            this.baseRepositoryMock.Setup(x => x.Get<Document>(It.IsAny<long>(), It.IsAny<string>(), It.IsAny<object>())).Returns(expected);
+            var expectedDocument = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
+            var expectedFile = new File { Content = new byte[1], Name = "test.pdf", Size = 1, UploadDate = DateTime.Now, CompanyId = 1 };
+
+            this.baseRepositoryMock.Setup(x => x.Get<Document>(It.IsAny<long>(), It.IsAny<string>(), It.IsAny<object>())).Returns(expectedDocument);
+            this.baseRepositoryMock.Setup(x => x.Get<File>(It.IsAny<long>(), It.IsAny<string>(), It.IsAny<object>())).Returns(expectedFile);
 
             //Act
             var result = this.documentService.Get(1);
 
             //Assert
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expectedDocument, result.Document);
+            Assert.AreEqual(expectedFile, result.File);
         }
 
         [Test]

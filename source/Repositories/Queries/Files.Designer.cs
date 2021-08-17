@@ -68,5 +68,14 @@ namespace api.Repositories.Queries {
                 return ResourceManager.GetString("Create", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT * FROM company.files WHERE id = @ID.
+        /// </summary>
+        public static string GetSingle {
+            get {
+                return ResourceManager.GetString("GetSingle", resourceCulture);
+            }
+        }
     }
 }

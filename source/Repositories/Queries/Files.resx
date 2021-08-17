@@ -120,4 +120,7 @@
   <data name="Create" xml:space="preserve">
     <value>INSERT INTO company.files(content, name, size, upload_date, company_id) VALUES (@CONTENT, @NAME, @SIZE, @UPLOADDATE, @COMPANYID);</value>
   </data>
+  <data name="GetSingle" xml:space="preserve">
+    <value>SELECT * FROM company.files WHERE id = @ID</value>
+  </data>
 </root>

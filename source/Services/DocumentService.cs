@@ -16,14 +16,35 @@ namespace api.Services
             this.baseRepository = baseRepository;
         }
 
-        public List<Document> Get()
+        public List<DocumentFile> Get()
         {
-            return this.baseRepository.Get<Document>(Repositories.Queries.Documents.GetAll);
+            var documentFiles = new List<DocumentFile>();
+            var documents = this.baseRepository.Get<Document>(Repositories.Queries.Documents.GetAll);
+            documents.ForEach(document =>
+            {
+                var file = this.baseRepository.Get<File>(document.FileId, Repositories.Queries.Files.GetSingle, new { ID = document.FileId });
+                var documentFile = new DocumentFile
+                {
+                    Document = document,
+                    File = file
+                };
+
+                documentFiles.Add(documentFile);
+            });
+
+            return documentFiles;
         }
 
-        public Document Get(long id)
+        public DocumentFile Get(long id)
         {
-            return this.baseRepository.Get<Document>(id, Repositories.Queries.Documents.GetSingle, new { ID = id });
+            var document = this.baseRepository.Get<Document>(id, Repositories.Queries.Documents.GetSingle, new { ID = id });
+            var file = this.baseRepository.Get<File>(document.FileId, Repositories.Queries.Files.GetSingle, new { ID = document.FileId });
+
+            return new DocumentFile
+            {
+                Document = document,
+                File = file
+            };
         }
 
         public bool Create(Document document)

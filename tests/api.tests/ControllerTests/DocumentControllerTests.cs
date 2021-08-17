@@ -25,14 +25,14 @@ namespace api.tests.ControllerTests
         public void Document_Get_ReturnsEmptyList()
         {
             //Arrange
-            var expected = new List<Document>();
+            var expected = new List<DocumentFile>();
             this.documentServiceMock.Setup(x => x.Get()).Returns(expected);
 
             //Act
             var response = this.documentController.Get();
             var result = response as OkObjectResult;
 
-            var resultList = (List<Document>)result.Value;
+            var resultList = (List<DocumentFile>)result.Value;
 
             //Assert
             Assert.AreEqual(expected.Count, resultList.Count);
@@ -42,14 +42,14 @@ namespace api.tests.ControllerTests
         public void Document_Get_ReturnsList()
         {
             //Arrange
-            var expected = new List<Document> { new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 } };
+            var expected = new List<DocumentFile> { new DocumentFile { Document = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 }, File = new File { Content = new byte[1], Name = "test.pdf", Size = 1, UploadDate = DateTime.Now, CompanyId = 1 } } };
             this.documentServiceMock.Setup(x => x.Get()).Returns(expected);
 
             //Act
             var response = this.documentController.Get();
             var result = response as OkObjectResult;
 
-            var resultList = (List<Document>)result.Value;
+            var resultList = (List<DocumentFile>)result.Value;
 
             //Assert
             Assert.AreEqual(expected.Count, resultList.Count);
@@ -59,7 +59,7 @@ namespace api.tests.ControllerTests
         public void Document_Get_ReturnsSingle()
         {
             //Arrange
-            var expected = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 };
+            var expected = new DocumentFile { Document = new Document { Id = 1, DocumentName = "Test Document", RenewalDate = DateTime.Now, CompanyId = 1, FileId = 1, DocumentTypeId = 1 }, File = new File { Content = new byte[1], Name = "test.pdf", Size = 1, UploadDate = DateTime.Now, CompanyId = 1 } };
             this.documentServiceMock.Setup(x => x.Get(It.IsAny<long>())).Returns(expected);
 
             //Act

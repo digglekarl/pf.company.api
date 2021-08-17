@@ -8,8 +8,8 @@ namespace api.Services.Interfaces
 {
     public interface IDocumentService
     {
-        List<Document> Get();
-        Document Get(long id);
+        List<DocumentFile> Get();
+        DocumentFile Get(long id);
         bool Create(Document dividend);
         bool Update(Document dividend);
         bool Delete(long id);
