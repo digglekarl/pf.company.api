@@ -31,6 +31,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Expenses.resx</DependentUpon>
     </Compile>
+    <Compile Update="Repositories\Queries\Files.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Files.resx</DependentUpon>
+    </Compile>
     <Compile Update="Repositories\Queries\Invoices.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -54,6 +59,10 @@
     <EmbeddedResource Update="Repositories\Queries\Expenses.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>expenses.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Repositories\Queries\Files.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Files.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Repositories\Queries\Invoices.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
