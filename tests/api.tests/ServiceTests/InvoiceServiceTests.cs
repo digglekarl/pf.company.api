@@ -142,5 +142,54 @@ namespace api.tests.ServiceTests
             //Assert
             Assert.IsFalse(result);
         }
+
+        [Test]
+        [TestCase(100, 10, 1000)]
+        [TestCase(365, 20, 7300)]
+        public void Invoice_WhenRetrieved_CalculatesAmount(decimal rate, int days, decimal total)
+        {
+            //Arrange
+            var invoice = new Invoice { Id = 1, Rate = rate, TotalDays = days, InvoiceDate = DateTime.Today, Reference = "Ref2507" };
+            this.baseRepositoryMock.Setup(x => x.Get<Invoice>(1, It.IsAny<string>(), It.IsAny<object>())).Returns(invoice);
+
+            //Act
+            var result = this.invoiceService.Get(1);
+
+            //Assert
+            Assert.AreEqual(total, result.Amount);
+        }
+
+
+        [Test]
+        [TestCase(100, 10, 200)]
+        [TestCase(365, 20, 1460)]
+        public void Invoice_WhenRetrieved_CalculatesVAT(decimal rate, int days, decimal total)
+        {
+            //Arrange
+            var invoice = new Invoice { Id = 1, Rate = rate, TotalDays = days, InvoiceDate = DateTime.Today, Reference = "Ref2507" };
+            this.baseRepositoryMock.Setup(x => x.Get<Invoice>(1, It.IsAny<string>(), It.IsAny<object>())).Returns(invoice);
+
+            //Act
+            var result = this.invoiceService.Get(1);
+
+            //Assert
+            Assert.AreEqual(total, result.Vat);
+        }
+
+        [Test]
+        [TestCase(100, 10, 1200)]
+        [TestCase(365, 20, 8760)]
+        public void Invoice_WhenRetrieved_CalculatesTotalAmount(decimal rate, int days, decimal total)
+        {
+            //Arrange
+            var invoice = new Invoice { Id = 1, Rate = rate, TotalDays = days, InvoiceDate = DateTime.Today, Reference = "Ref2507" };
+            this.baseRepositoryMock.Setup(x => x.Get<Invoice>(1, It.IsAny<string>(), It.IsAny<object>())).Returns(invoice);
+
+            //Act
+            var result = this.invoiceService.Get(1);
+
+            //Assert
+            Assert.AreEqual(total, result.TotalAmount);
+        }
     }
 }
