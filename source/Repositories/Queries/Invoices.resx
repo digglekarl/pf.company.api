@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Create" xml:space="preserve">
-    <value>INSERT INTO company.invoices(invoice_date,rate,total_days,reference) VALUES (@INVOICEDATE,@RATE,@TOTALDAYS,@REFERENCE)</value>
+    <value>INSERT INTO company.invoices(invoice_date,rate,total_days,reference,company_id) VALUES (@INVOICEDATE,@RATE,@TOTALDAYS,@REFERENCE,@COMPANYID)</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>DELETE FROM companys.invoices WHERE id = @ID</value>
+    <value>DELETE FROM company.invoices WHERE id = @ID</value>
   </data>
   <data name="GetAll" xml:space="preserve">
     <value>SELECT * FROM company.invoices</value>

@@ -61,7 +61,7 @@ namespace api.Repositories.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO company.invoices(invoice_date,rate,total_days,reference) VALUES (@INVOICEDATE,@RATE,@TOTALDAYS,@REFERENCE).
+        ///   Looks up a localized string similar to INSERT INTO company.invoices(invoice_date,rate,total_days,reference,company_id) VALUES (@INVOICEDATE,@RATE,@TOTALDAYS,@REFERENCE,@COMPANYID).
         /// </summary>
         public static string Create {
             get {
@@ -70,7 +70,7 @@ namespace api.Repositories.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM companys.invoices WHERE id = @ID.
+        ///   Looks up a localized string similar to DELETE FROM company.invoices WHERE id = @ID.
         /// </summary>
         public static string Delete {
             get {

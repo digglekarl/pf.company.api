@@ -61,7 +61,7 @@ namespace api.Repositories.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO company.expenses(amount, description,expense_date) VALUES (@AMOUNT,@DESCRIPTION,@EXPENSEDATE);.
+        ///   Looks up a localized string similar to INSERT INTO company.expenses(amount, description,expense_date,invoice_id) VALUES (@AMOUNT,@DESCRIPTION,@EXPENSEDATE,@INVOICEID);.
         /// </summary>
         public static string Create {
             get {
@@ -97,7 +97,7 @@ namespace api.Repositories.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE company.expenses SET amount=@AMOUNT, description=@DESCRIPTION, expense_date=@EXPENSEDATE WHERE id = @ID.
+        ///   Looks up a localized string similar to UPDATE company.expenses SET amount=@AMOUNT, description=@DESCRIPTION, expense_date=@EXPENSEDATE, invoice_id = @INVOICEID WHERE id = @ID.
         /// </summary>
         public static string Update {
             get {

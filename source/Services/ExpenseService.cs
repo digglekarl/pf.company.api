@@ -29,11 +29,11 @@ namespace api.Services
 
         public bool Create(Expense expense)
         {
-            return this.baseRepository.Create(expense, Repositories.Queries.Expenses.Create, new { AMOUNT = expense.Amount, DESCRIPTION = expense.Description, EXPENSEDATE = expense.ExpenseDate });
+            return this.baseRepository.Create(expense, Repositories.Queries.Expenses.Create, new { AMOUNT = expense.Amount, DESCRIPTION = expense.Description, EXPENSEDATE = expense.ExpenseDate, INVOICEID = expense.InvoiceId });
         }
         public bool Update(Expense expense)
         {
-            return this.baseRepository.Update(expense, Repositories.Queries.Expenses.Update, new { ID = expense.Id, AMOUNT = expense.Amount, DESCRIPTION = expense.Description, EXPENSEDATE = expense.ExpenseDate });
+            return this.baseRepository.Update(expense, Repositories.Queries.Expenses.Update, new { ID = expense.Id, AMOUNT = expense.Amount, DESCRIPTION = expense.Description, EXPENSEDATE = expense.ExpenseDate, INVOICEID = expense.InvoiceId });
         }
 
         public bool Delete(long id)

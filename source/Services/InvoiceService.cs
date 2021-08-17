@@ -29,12 +29,12 @@ namespace api.Services
 
         public bool Create(Invoice invoice)
         {
-            return this.baseRepository.Create(invoice, Repositories.Queries.Invoices.Create, new { INVOICEDATE = invoice.InvoiceDate, RATE = invoice.Rate, TOTALDAYS = invoice.TotalDays, REFERENCE = invoice.Reference } );
+            return this.baseRepository.Create(invoice, Repositories.Queries.Invoices.Create, new { INVOICEDATE = invoice.InvoiceDate, RATE = invoice.Rate, TOTALDAYS = invoice.TotalDays, REFERENCE = invoice.Reference, COMPANYID = invoice.CompanyId } );
         }
 
         public bool Update(Invoice invoice)
         {
-            return this.baseRepository.Update<Invoice>(invoice, Repositories.Queries.Invoices.Update, new { ID = invoice.Id, INVOICEDATE = invoice.InvoiceDate, RATE = invoice.Rate, TOTALDAYS = invoice.TotalDays, REFERENCE = invoice.Reference } );
+            return this.baseRepository.Update<Invoice>(invoice, Repositories.Queries.Invoices.Update, new { ID = invoice.Id, INVOICEDATE = invoice.InvoiceDate, RATE = invoice.Rate, TOTALDAYS = invoice.TotalDays, REFERENCE = invoice.Reference, COMPANYID = invoice.CompanyId } );
         }
 
         public bool Delete(long id)

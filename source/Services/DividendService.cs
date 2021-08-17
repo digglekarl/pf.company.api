@@ -29,7 +29,7 @@ namespace api.Services
 
         public bool Create(Dividend dividend)
         {
-            return this.baseRepository.Create(dividend, Repositories.Queries.Dividends.Create, new { AMOUNT = dividend.Amount, REFERENCE = dividend.Reference, REQUESTEDDATE = dividend.RequestedDate });
+            return this.baseRepository.Create(dividend, Repositories.Queries.Dividends.Create, new { AMOUNT = dividend.Amount, REFERENCE = dividend.Reference, REQUESTEDDATE = dividend.RequestedDate, COMPANYID = dividend.CompanyId });
         }
 
         public bool Update(Dividend dividend)

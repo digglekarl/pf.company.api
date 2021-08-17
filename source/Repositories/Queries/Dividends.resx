@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Create" xml:space="preserve">
-    <value>INSERT INTO company.dividends(amount, reference, requested_date) VALUES (@AMOUNT, @REFERENCE, @REQUESTEDDATE)</value>
+    <value>INSERT INTO company.dividends(amount, reference, requested_date, company_id) VALUES (@AMOUNT, @REFERENCE, @REQUESTEDDATE, @COMPANYID)</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>DELETE FROM company.dividends WHERE id = @ID</value>

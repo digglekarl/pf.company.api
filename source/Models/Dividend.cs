@@ -12,5 +12,6 @@ namespace api.Models
         public decimal RatePerShare => Amount / 100M;
         public DateTime RequestedDate { get; set; }
         public string Reference { get; set; }
+        public long CompanyId { get; set; }
     }
 }

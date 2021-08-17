@@ -61,7 +61,7 @@ namespace api.Repositories.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO company.dividends(amount, reference, requested_date) VALUES (@AMOUNT, @REFERENCE, @REQUESTEDDATE).
+        ///   Looks up a localized string similar to INSERT INTO company.dividends(amount, reference, requested_date, company_id) VALUES (@AMOUNT, @REFERENCE, @REQUESTEDDATE, @COMPANYID).
         /// </summary>
         public static string Create {
             get {
