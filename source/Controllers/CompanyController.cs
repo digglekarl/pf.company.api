@@ -1,5 +1,6 @@
 ﻿using api.Models;
 using api.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,10 +14,11 @@ namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CompanyController : BaseController
+    [Authorize]
+    public class CompanyController : ControllerBase
     {
         private ICompanyService companyService;
-        public CompanyController(ICompanyService companyService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService) : base(httpContextAccessor, tokenService)
+        public CompanyController(ICompanyService companyService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService) 
         {
             this.companyService = companyService;
         }

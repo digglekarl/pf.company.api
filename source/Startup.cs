@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using api.Config;
+using api.Middleware;
 using api.Repositories;
 using api.Repositories.Helper;
 using api.Repositories.Interfaces;
@@ -47,7 +49,7 @@ namespace api
                     ValidAudience = Configuration["Jwt:Audience"],
                     IssuerSigningKey = new
                     SymmetricSecurityKey
-                    (Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
+                    (Encoding.UTF8.GetBytes(Configuration["Jwt:Secret"])),
                     ClockSkew = Debugger.IsAttached ? TimeSpan.Zero : TimeSpan.FromSeconds(int.Parse(Configuration["Jwt:ExpirationTime"]))
                 };
             });
@@ -82,9 +84,12 @@ namespace api
                     });
             });
 
+            services.Configure<Jwt>(Configuration.GetSection("Jwt"));
+
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ITokenService, TokenService>();
 
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<IDividendService, DividendService>();
             services.AddTransient<IInvoiceService, InvoiceService>();
             services.AddTransient<IExpenseService, ExpenseService>();
@@ -117,27 +122,14 @@ namespace api
 
             app.UseAuthentication();
             app.UseAuthorization();
+            
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-
-            //app.UseSession(new SessionOptions
-            //{
-                
-            //});
-
-            //app.Use(async (context, next) =>
-            //{
-            //    var token = context.Session.GetString("Token");
-            //    if (!string.IsNullOrEmpty(token))
-            //    {
-            //        context.Request.Headers.Add("Authorization", "Bearer " + token);
-            //    }
-            //    await next();
-            //});
         }
     }
 }

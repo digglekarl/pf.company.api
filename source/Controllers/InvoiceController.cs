@@ -13,11 +13,11 @@ namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class InvoiceController : BaseController
+    public class InvoiceController : ControllerBase
     {
         private IInvoiceService invoiceService;
 
-        public InvoiceController(IInvoiceService invoiceService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService) : base(httpContextAccessor, tokenService)
+        public InvoiceController(IInvoiceService invoiceService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService)
         {
             this.invoiceService = invoiceService;
         }

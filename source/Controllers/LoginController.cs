@@ -17,7 +17,7 @@ namespace api.Controllers
         [AllowAnonymous]
         public IActionResult Login([FromBody] Credentials credentials)
         {
-            return Ok();
+            return Ok(true);
         }
     }
 }

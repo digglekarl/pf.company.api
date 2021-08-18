@@ -14,11 +14,11 @@ namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UploadController : BaseController
+    public class UploadController : ControllerBase
     {
         private IFileService fileService;
 
-        public UploadController(IFileService fileService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService) : base(httpContextAccessor, tokenService)
+        public UploadController(IFileService fileService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService)
         {
             this.fileService = fileService;
         }

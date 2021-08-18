@@ -13,10 +13,10 @@ namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DocumentController : BaseController
+    public class DocumentController : ControllerBase
     {
         private IDocumentService documentService;
-        public DocumentController(IDocumentService documentService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService) : base(httpContextAccessor, tokenService)
+        public DocumentController(IDocumentService documentService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService) 
         {
             this.documentService = documentService;
         }

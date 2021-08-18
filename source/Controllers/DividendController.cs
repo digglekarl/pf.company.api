@@ -13,11 +13,11 @@ namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DividendController : BaseController
+    public class DividendController : ControllerBase
     {
         private IDividendService dividendService;
 
-        public DividendController(IDividendService dividendService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService) : base(httpContextAccessor, tokenService)
+        public DividendController(IDividendService dividendService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService) 
         {
             this.dividendService = dividendService;
         }
