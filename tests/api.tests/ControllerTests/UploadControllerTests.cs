@@ -15,12 +15,17 @@ namespace api.tests.ControllerTests
     {
         private UploadController uploadController;
         private Mock<IFileService> fileServiceMock;
+        private Mock<IHttpContextAccessor> httpContextAccessorMock;
+        private Mock<ITokenService> tokenServiceMock;
 
         [SetUp]
         public void SetUp()
         {
             this.fileServiceMock = new Mock<IFileService>();
-            this.uploadController = new UploadController(this.fileServiceMock.Object);
+
+            this.httpContextAccessorMock = new Mock<IHttpContextAccessor>();
+            this.tokenServiceMock = new Mock<ITokenService>();
+            this.uploadController = new UploadController(this.fileServiceMock.Object, this.httpContextAccessorMock.Object, this.tokenServiceMock.Object);
         }
 
         [Test]

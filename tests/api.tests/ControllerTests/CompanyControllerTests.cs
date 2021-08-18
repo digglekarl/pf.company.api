@@ -7,6 +7,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 
 namespace api.tests.ControllerTests
@@ -15,12 +16,17 @@ namespace api.tests.ControllerTests
     {
         private CompanyController companyController;
         private Mock<ICompanyService> companyServiceMock;
+        private Mock<IHttpContextAccessor> httpContextAccessorMock;
+        private Mock<ITokenService> tokenServiceMock;
 
         [SetUp]
         public void SetUp()
         {
             this.companyServiceMock = new Mock<ICompanyService>();
-            this.companyController = new CompanyController(this.companyServiceMock.Object);
+
+            this.httpContextAccessorMock = new Mock<IHttpContextAccessor>();
+            this.tokenServiceMock = new Mock<ITokenService>();
+            this.companyController = new CompanyController(this.companyServiceMock.Object, this.httpContextAccessorMock.Object, this.tokenServiceMock.Object);
         }
 
 

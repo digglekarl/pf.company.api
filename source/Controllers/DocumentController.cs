@@ -1,6 +1,7 @@
 ﻿using api.Models;
 using api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,10 @@ namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DocumentController : ControllerBase
+    public class DocumentController : BaseController
     {
         private IDocumentService documentService;
-        public DocumentController(IDocumentService documentService)
+        public DocumentController(IDocumentService documentService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService) : base(httpContextAccessor, tokenService)
         {
             this.documentService = documentService;
         }

@@ -6,6 +6,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace api.tests.controllers
 {
@@ -13,12 +14,16 @@ namespace api.tests.controllers
     {
         private DividendController dividendsController;
         private Mock<IDividendService> dividendService;
+        private Mock<IHttpContextAccessor> httpContextAccessorMock;
+        private Mock<ITokenService> tokenServiceMock;
 
         [SetUp]
         public void Setup()
         {
             this.dividendService = new Mock<IDividendService>();
-            this.dividendsController = new DividendController(this.dividendService.Object);
+            this.httpContextAccessorMock = new Mock<IHttpContextAccessor>();
+            this.tokenServiceMock = new Mock<ITokenService>();
+            this.dividendsController = new DividendController(this.dividendService.Object, this.httpContextAccessorMock.Object, this.tokenServiceMock.Object);
         }
 
         [Test]

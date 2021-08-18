@@ -2,6 +2,7 @@
 using api.Services;
 using api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,11 @@ namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UploadController : ControllerBase
+    public class UploadController : BaseController
     {
         private IFileService fileService;
 
-        public UploadController(IFileService fileService)
+        public UploadController(IFileService fileService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService) : base(httpContextAccessor, tokenService)
         {
             this.fileService = fileService;
         }

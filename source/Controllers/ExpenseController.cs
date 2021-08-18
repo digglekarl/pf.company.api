@@ -1,6 +1,7 @@
 ﻿using api.Models;
 using api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,11 @@ namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExpenseController : ControllerBase
+    public class ExpenseController : BaseController
     {
         private IExpenseService expenseService;
 
-        public ExpenseController(IExpenseService expenseService)
+        public ExpenseController(IExpenseService expenseService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService) : base(httpContextAccessor, tokenService)
         {
             this.expenseService = expenseService;
         }

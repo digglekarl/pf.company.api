@@ -6,6 +6,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace api.tests.ControllerTests
 {
@@ -13,12 +14,16 @@ namespace api.tests.ControllerTests
     {
         private DocumentController documentController;
         private Mock<IDocumentService> documentServiceMock;
+        private Mock<IHttpContextAccessor> httpContextAccessorMock;
+        private Mock<ITokenService> tokenServiceMock;
 
         [SetUp]
         public void SetUp()
         {
             this.documentServiceMock = new Mock<IDocumentService>();
-            this.documentController = new DocumentController(this.documentServiceMock.Object);
+            this.httpContextAccessorMock = new Mock<IHttpContextAccessor>();
+            this.tokenServiceMock = new Mock<ITokenService>();
+            this.documentController = new DocumentController(this.documentServiceMock.Object, this.httpContextAccessorMock.Object, this.tokenServiceMock.Object);
         }
 
         [Test]

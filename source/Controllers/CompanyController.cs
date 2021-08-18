@@ -1,5 +1,6 @@
 ﻿using api.Models;
 using api.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,10 @@ namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CompanyController : ControllerBase
+    public class CompanyController : BaseController
     {
         private ICompanyService companyService;
-        public CompanyController(ICompanyService companyService)
+        public CompanyController(ICompanyService companyService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService) : base(httpContextAccessor, tokenService)
         {
             this.companyService = companyService;
         }

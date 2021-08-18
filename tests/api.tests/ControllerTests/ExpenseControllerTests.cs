@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace api.tests.ControllerTests
 {
@@ -16,12 +17,17 @@ namespace api.tests.ControllerTests
     {
         private ExpenseController expenseController;
         private Mock<IExpenseService> expenseServiceMock;
+        private Mock<IHttpContextAccessor> httpContextAccessorMock;
+        private Mock<ITokenService> tokenServiceMock;
 
         [SetUp]
         public void SetUp()
         {
             this.expenseServiceMock = new Mock<IExpenseService>();
-            this.expenseController = new ExpenseController(this.expenseServiceMock.Object);
+
+            this.httpContextAccessorMock = new Mock<IHttpContextAccessor>();
+            this.tokenServiceMock = new Mock<ITokenService>();
+            this.expenseController = new ExpenseController(this.expenseServiceMock.Object, this.httpContextAccessorMock.Object, this.tokenServiceMock.Object);
         }
         
         [Test]
